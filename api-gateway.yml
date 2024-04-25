@@ -1,11 +1,26 @@
-zuul:
-  prefix: /api
-  ignoredServices: '*'
-  routes:
-    questions-service: /question/**
-    visits-service: /visit/**
-    customers-service: /customer/**
-    api-gateway: /gateway/**
+
+
+logging:
+  level:
+    root: INFO
+    org.springframework.cloud.gateway.route.RouteDefinitionLocator: INFO
+    org.springframework.cloud.gateway: TRACE
+
+# product-service
+spring:
+  cloud:
+    gateway:
+      discovery:
+        locator:
+          enabled: true
+          lower-case-service-id: true
+
+      routes:
+        - id: questions-service
+          uri: lb://questions-service
+          predicates:
+            - Path=/api/question
+
 
 server:
   port: 8080
