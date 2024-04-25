@@ -1,33 +1,16 @@
-
-
-logging:
-  level:
-    root: INFO
-    org.springframework.cloud.gateway.route.RouteDefinitionLocator: INFO
-    org.springframework.cloud.gateway: TRACE
-
-# product-service
-spring:
-  cloud:
-    gateway:
-      discovery:
-        locator:
-          enabled: true
-          lower-case-service-id: true
-
-      routes:
-        - id: questions-service
-          uri: lb://questions-service
-          predicates:
-            - Path=/api/question
-
+zuul:
+  prefix: /api
+  ignoredServices: '*'
+  routes:
+    vets-service: /question/**
+    api-gateway: /gateway/**
 
 server:
   port: 8080
-#  compression:
-#    enabled: true
-#    mime-types: application/json,text/css,application/javascript
-#    min-response-size: 2048
+  compression:
+    enabled: true
+    mime-types: application/json,text/css,application/javascript
+    min-response-size: 2048
 
 # Internationalization
 spring.messages.basename: messages/messages
