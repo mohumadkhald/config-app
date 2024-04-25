@@ -10,8 +10,8 @@ server:
 spring:
   sql:
     init:
-      schema-locations: classpath*:db/mysql/schema.sql
-      data-locations: classpath*:db/mysql/data.sql
+      schema-locations: classpath*:db/hsqldb/schema.sql
+      data-locations: classpath*:db/hsqldb/data.sql
   sleuth:
     sampler:
       probability: 1.0
@@ -63,7 +63,7 @@ management:
 spring:
   config:
     activate:
-      on-profile: chaos-monkey      
+      on-profile: chaos-monkey
 management.endpoint.chaosmonkey.enabled: true
 chaos:
   monkey:
@@ -74,3 +74,18 @@ chaos:
       repository: false
       rest-controller: false
       service: false
+
+---
+spring:
+  config:
+    activate:
+      on-profile: mysql
+  datasource:
+    url: jdbc:mysql://localhost:3306/question?useSSL=false
+    username: root
+    password: root
+  sql:
+    init:
+      schema-locations: classpath*:db/mysql/schema.sql
+      data-locations: classpath*:db/mysql/data.sql
+      init: ALWAYS
