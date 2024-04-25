@@ -10,8 +10,8 @@ server:
 spring:
   sql:
     init:
-      schema-locations: classpath*:db/hsqldb/schema.sql
-      data-locations: classpath*:db/hsqldb/data.sql
+      schema-locations: classpath*:db/mysql/schema.sql
+      data-locations: classpath*:db/mysql/data.sql
   sleuth:
     sampler:
       probability: 1.0
@@ -81,7 +81,7 @@ spring:
     activate:
       on-profile: mysql
   datasource:
-    url: jdbc:mysql://localhost:3306/question?useSSL=false
+    url: jdbc:mysql://localhost:3306/questiondb?useSSL=false
     username: root
     password: root
   sql:
