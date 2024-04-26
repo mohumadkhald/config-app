@@ -5,8 +5,8 @@
 ---
 spring:
   datasource:
-    driver-class-name: org.mariadb.jdbc.Driver
-    url: jdbc:mariadb://localhost:3306/questiondb
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://mysql-db:3306/questiondb?useSSL=false&serverTimezone=UTC
     username: root
     password: root
   jpa:
@@ -14,22 +14,9 @@ spring:
       ddl-auto: update
     properties:
       hibernate:
-        dialect: org.hibernate.dialect.MariaDBDialect
-
-
+        dialect: org.hibernate.dialect.MySQL8Dialect
 ---
 spring:
-  datasource:
-    driver-class-name: org.mariadb.jdbc.Driver
-    url: jdbc:mariadb://localhost:3306/questiondb
-    username: root
-    password: root
-  jpa:
-    hibernate:
-      ddl-auto: update
-    properties:
-      hibernate:
-        dialect: org.hibernate.dialect.MariaDBDialect
   config:
     activate:
       on-profile: default
@@ -40,19 +27,6 @@ eureka:
 
 ---
 spring:
-  datasource:
-    url: jdbc:mariadb://mysql-db:3306/questiondb
-    username: root
-    password: root
-    driver-class-name: org.mariadb.jdbc.Driver
-
-
-  jpa:
-    hibernate:
-      ddl-auto: update
-    properties:
-      hibernate:
-        dialect: org.hibernate.dialect.MariaDBDialect
   config:
     activate:
       on-profile: docker
