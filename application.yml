@@ -83,8 +83,8 @@ spring:
   datasource:
     driver-class-name: org.mariadb.jdbc.Driver
     url: jdbc:mariadb://localhost:3306/questiondb
-    username: admin
-    password: admin
+    username: root
+    password: root
   sql:
     init:
       schema-locations: classpath*:db/mysql/schema.sql
