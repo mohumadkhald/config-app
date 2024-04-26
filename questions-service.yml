@@ -1,14 +1,20 @@
-﻿questions:
+﻿# question.yml
+questions:
   cache:
     ttl: 60
     heap-size: 100
----
+
 spring:
+  profiles:
+    include:
+      - default
+      - docker
+
   datasource:
     driver-class-name: org.mariadb.jdbc.Driver
-    url: jdbc:mariadb://localhost:3306/questiondb
     username: root
     password: root
+
   jpa:
     hibernate:
       ddl-auto: update
@@ -16,53 +22,20 @@ spring:
       hibernate:
         dialect: org.hibernate.dialect.MariaDBDialect
 
-
----
-spring:
-  datasource:
-    driver-class-name: org.mariadb.jdbc.Driver
-    url: jdbc:mariadb://localhost:3306/questiondb
-    username: root
-    password: root
-  jpa:
-    hibernate:
-      ddl-auto: update
-    properties:
-      hibernate:
-        dialect: org.hibernate.dialect.MariaDBDialect
-  config:
-    activate:
-      on-profile: default
 eureka:
   instance:
-    # enable to register multiple app instances with a random server port
     instance-id: ${spring.application.name}:${random.uuid}
-
----
-spring:
-  datasource:
-    url: jdbc:mariadb://mysql-db:3306/questiondb
-    username: root
-    password: root
-    driver-class-name: org.mariadb.jdbc.Driver
-
-
-  jpa:
-    hibernate:
-      ddl-auto: update
-    properties:
-      hibernate:
-        dialect: org.hibernate.dialect.MariaDBDialect
-  config:
-    activate:
-      on-profile: docker
-  zipkin:
-    baseUrl: http://tracing-server:9411
-server:
-  port: 8083
-eureka:
   client:
     serviceUrl:
       defaultZone: http://discovery-server:8761/eureka/
 
+server:
+  port: 8083
+
+config:
+  activate:
+    on-profile: docker
+
+zipkin:
+  baseUrl: http://tracing-server:9411
 
