@@ -44,6 +44,8 @@ spring:
     url: jdbc:mariadb://mysql-db:3306/questiondb
     username: root
     password: root
+    driver-class-name: org.mariadb.jdbc.Driver
+
 
   jpa:
     hibernate:
