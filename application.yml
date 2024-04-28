@@ -8,6 +8,13 @@ server:
 
 # embedded database init, supports mysql too trough the 'mysql' spring profile
 spring:
+  config:
+    activate:
+      on-profile: mysql
+  datasource:
+    url: jdbc:mysql://serv-mysql:3306/petclinic?useSSL=false&allowPublicKeyRetrieval=true
+    username: root
+    password: root
   sql:
     init:
       schema-locations: classpath*:db/hsqldb/schema.sql
@@ -81,7 +88,7 @@ spring:
     activate:
       on-profile: mysql
   datasource:
-    url: jdbc:mysql://jovial_lamport:3306/petclinic?useSSL=false&allowPublicKeyRetrieval=true
+    url: jdbc:mysql://serv-mysql:3306/petclinic?useSSL=false&allowPublicKeyRetrieval=true
     username: root
     password: root
   sql:
