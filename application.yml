@@ -85,9 +85,7 @@ spring:
   jpa:
     hibernate:
       ddl-auto: update
-    properties:
-      hibernate:
-        dialect: org.hibernate.dialect.MariaDBDialect
+
   sql:
     init:
       schema-locations: classpath*:db/mysql/schema.sql
