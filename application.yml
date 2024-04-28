@@ -8,13 +8,6 @@ server:
 
 # embedded database init, supports mysql too trough the 'mysql' spring profile
 spring:
-  config:
-    activate:
-      on-profile: mysql
-  datasource:
-    url: jdbc:mysql://localhost:3306/petclinic?useSSL=false
-    username: root
-    password: root
   sql:
     init:
       schema-locations: classpath*:db/hsqldb/schema.sql
@@ -29,11 +22,9 @@ spring:
       # Override configuration with any local property source
       override-none: true
   jpa:
-    generate-ddl: true
-    show-sql: true
     open-in-view: false
     hibernate:
-      ddl-auto: update
+      ddl-auto: none
 
 # Spring Boot 1.5 makes actuator secure by default
 management.security.enabled: false
@@ -86,20 +77,13 @@ chaos:
 
 ---
 spring:
+  config:
+    activate:
+      on-profile: mysql
   datasource:
-    url: jdbc:mysql://serv-mysql:3307/petclinic?useSSL=false&serverTimezone=UTC
+    url: jdbc:mysql://serv-mysql:3306/petclinic?useSSL=false
     username: root
     password: root
-    driver-class-name: com.mysql.cj.jdbc.Driver
-  jpa:
-    database-platform: org.hibernate.dialect.MySQLDialect
-    hibernate:
-      ddl-auto: update # or your preferred Hibernate DDL mode
-    show-sql: true
-    properties:
-      hibernate:
-        format_sql: true
-    database: mysql
   sql:
     init:
       schema-locations: classpath*:db/mysql/schema.sql
