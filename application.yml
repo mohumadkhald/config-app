@@ -78,9 +78,9 @@ spring:
     activate:
       on-profile: mysql
   datasource:
-    url: jdbc:mariadb://${MYSQL_HOST:localhost}:${MYSQL_PORT:3306}/petclinic
-    username: ${MYSQL_USER:root}
-    password: ${MYSQL_PASSWORD:root}
+    url: jdbc:mariadb://localhost:3306/petclinic
+    username: root
+    password: root
     driver-class-name: org.mariadb.jdbc.Driver
   jpa:
     hibernate:
